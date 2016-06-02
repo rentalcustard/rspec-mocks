@@ -523,15 +523,15 @@ module RSpec
           @message == message && negative?
         end
 
-        def actual_received_count_matters?
-          @at_least || @at_most || @exactly
-        end
-
         def increase_actual_received_count!
-          @actual_received_count += 1
+          @actual_received_count += 1 if actual_received_count_matters?
         end
 
       private
+
+        def actual_received_count_matters?
+          @at_least || @at_most || @exactly
+        end
 
         def exception_source_id
           @exception_source_id ||= "#{self.class.name} #{__id__}"
