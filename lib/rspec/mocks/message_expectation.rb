@@ -468,7 +468,7 @@ module RSpec
         end
 
         def advise(*args)
-          similar_messages << args
+          similar_messages << args unless expected_messages_received?
         end
 
         def unadvise(args)
